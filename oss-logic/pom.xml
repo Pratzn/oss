@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.github.pratzn</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../oss-parent</relativePath>
+	</parent>
+  <artifactId>oss-logic</artifactId>
+	<name>oss-logic</name>
+	<description>oss-logic (Service Layer)</description>
+	<url>https://github.com/Pratzn/oss</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<version>${project.version}</version>
+			<artifactId>oss-dao</artifactId>
+		</dependency>
+
+
+		<!-- Spring Framework -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+		</dependency>
+
+		<!-- Data Access -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-archetype-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
