@@ -1,0 +1,1 @@
+This folder (log-messages) is the directory in order to place the file that you generated in dukenavire-logger.

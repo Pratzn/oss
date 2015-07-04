@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <!--Development environment log output setting -->
+
+    <!-- Appender -->
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <!--
+            	Settings for Development:
+                For release see how the " src / release / resources / log4j.xml " .
+                Add the $ c to the layout if you want to output the logger name .
+                % l to use caution due to the high load .
+            -->
+            <param name="ConversionPattern"
+                value="%d{yy/MM/dd HH:mm:ss.SSS} %-5p [R:%.5X{reqId} S:%.5X{sessionId}] [%X{userId}]  %X{indent}%m &lt;-- %l%n" />
+        </layout>
+    </appender>
+    
+    <!-- [ SQL LOG ] -->
+    <logger name="mybatis.sql.log">
+        <level value="debug" />
+    </logger>
+
+    <logger name="th.co.nssol.ttfl.noss">
+        <level value="debug" />
+    </logger>
+
+
+    <logger name="org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver">
+        <level value="debug"/>
+    </logger>
+
+    <logger name="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <level value="debug" />
+    </logger>
+
+    <logger name="org.mybatis.spring">
+        <level value="debug"/>
+    </logger>
+
+    <root>
+        <level value="info" />
+        <appender-ref ref="console" />
+    </root>
+</log4j:configuration>

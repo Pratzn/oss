@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        
+        <!-- Of cache enable / disable switch (mybatis of default : true [ Enable] ) -->
+        <setting name="cacheEnabled" value="true"/>
+        
+        <!-- You can either automatically Camel case the mapping of column names and Java field (the default mybatis: false [ Disabled ) -->
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+        
+        <!-- Nested Would you like to be able to use the RowBounds in Statement ( default mybatis: false and [ available ]) -->
+        <setting name="safeRowBoundsEnabled" value="true" />
+        
+        <!-- Nested Would you like to be able to use the ResultHandler in Statement ( default mybatis: false and [ available ]) -->
+        <setting name="safeResultHandlerEnabled" value="true" />
+        
+        <!-- Settings for the log output (be made to end up with) -->
+        <setting name="logPrefix" value="mybatis.sql.log."/>
+    
+    </settings>
+</configuration>

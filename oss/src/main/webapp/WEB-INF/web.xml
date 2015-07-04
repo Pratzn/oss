@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+    id="WebApp_ID" version="3.0">
+
+    <display-name>noss</display-name>
+
+    <!-- アプリケーションコンテキストの読み込み -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring/root-context.xml</param-value>
+    </context-param>
+
+
+
+    <!-- Spring security -->
+    <filter>
+	        <filter-name>springSecurityFilterChain</filter-name>
+	        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+	        <filter-name>springSecurityFilterChain</filter-name>
+	        <url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+    <!-- エンコーディングフィルター -->
+    <filter>
+        <filter-name>characterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>characterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- リクエストロギングフィルター -->
+    <filter>
+        <filter-name>requestLoggingFilter</filter-name>
+        <filter-class>jp.co.nssol.dukenavire.web.filter.DNAccessLoggingFilter</filter-class>
+        <init-param>
+            <param-name>includeClientInfo</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>beforeMessagePrefix</param-name>
+            <param-value>Request [</param-value>
+        </init-param>
+        <!-- ログ出力を無視するURLのプレフィックス -->
+        <init-param>
+            <param-name>ignoreUrlPrefix</param-name>
+            <param-value>/resources/</param-value>
+        </init-param>
+        <!-- ログ出力を無視するパラメータ正規表現パターン。カンマ区切りで複数指定可能 -->
+        <!--
+        <init-param>
+            <param-name>ignoreParamRegExPatterns</param-name>
+            <param-value>.*password.*</param-value>
+        </init-param>
+         -->
+         <!-- POST時のパラメータを出力するかどうか -->
+         <init-param>
+             <param-name>outputParameter</param-name>
+             <param-value>false</param-value>
+         </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>requestLoggingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <!-- Spring Securityフィルタ -->
+    <!-- Spring Securityを利用する場合は、コメントをはずしてください。
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    -->
+
+    <!-- リクエストコンテキストリスナーの設定 -->
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+
+    <!-- コンテキストローダリスナーの設定 -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- SpringSecurity セッション管理用のリスナー設定 -->
+    <!-- Spring Securityを利用する場合は、コメントをはずしてください。
+    <listener>
+        <listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+    </listener>
+    -->
+
+    <!-- Dispatcherサーブレット設定 -->
+    <servlet>
+        <servlet-name>appServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring/appServlet/servlet-context.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>appServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!-- エラーページの設定。例外とステータスコードのマッピングはDefaultExceptionResolverを参照 -->
+    <error-page>
+        <error-code>400</error-code>
+        <location>/error/view?messageCode=ER0002</location>
+    </error-page>
+     <error-page>
+        <error-code>403</error-code>
+        <location>/error/view?messageCode=ER0004</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/view?messageCode=ER0001</location>
+    </error-page>
+    <error-page>
+        <error-code>405</error-code>
+        <location>/error/view?messageCode=ER0002</location>
+    </error-page>
+    <error-page>
+        <error-code>406</error-code>
+        <location>/error/view?messageCode=ER0002</location>
+    </error-page>
+    <error-page>
+        <error-code>415</error-code>
+        <location>/error/view?messageCode=ER0002</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error/view?messageCode=ER0002</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/error/view?messageCode=ER9999</location>
+    </error-page>
+
+    <!-- HTTPセッションの設定 -->
+    <session-config>
+        <session-timeout>30</session-timeout>
+        <cookie-config>
+            <name>JSESSIONID</name>
+            <http-only>true</http-only>
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
+
+
+</web-app>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+    <description>アプリケーションコンテキスト - サービス関連のXML定義</description>
+	<context:annotation-config/>
+
+    <!-- [サービスクラスのスキャン設定] -->
+    <context:component-scan base-package="th.co.nssol.ttfl.noss.**.service" />
+
+
+    <!-- [例外ログの出力設定] -->
+    <!-- 例外出力アドバイスの設定(サービス・コントローラ共用) -->
+    <bean id="exceptionLogAdvice" class="jp.co.nssol.dukenavire.common.aop.DNExceptionLogAdvice" />
+
+    <!-- 例外ログ出力のAOP設定(サービス用) -->
+    <aop:config>
+        <aop:advisor advice-ref="exceptionLogAdvice" pointcut="@within(org.springframework.stereotype.Service)" />
+    </aop:config>
+
+
+    <!-- [統計ログの出力設定) -->
+    <!-- 統計ログ出力アドバイスの設定（サービス・コントローラ共用) -->
+    <bean id="statisticsLogAdvice" class="jp.co.nssol.dukenavire.common.aop.DNStatisticsLogAdvice">
+        <property name="indentView" value="${statistics.log.advice.indentView}" />
+        <property name="simpleClassName" value="true" />
+        <property name="showArgsAndResultValue" value="true" />
+        <property name="maxLengthOfValue" value="1000" />
+        <property name="indent" value="  " />
+        <property name="mdcIndent" value="indent" />
+        <property name="excludeClassSet">
+            <set>
+                <value>org.springframework.validation.BeanPropertyBindingResult</value>
+            </set>
+        </property>
+    </bean>
+
+    <!-- 統計ログのAOP設定(サービス用) -->
+    <aop:config>
+        <aop:aspect id="statisticsLogAspect" ref="statisticsLogAdvice">
+            <aop:around pointcut-ref="statisticsLogPointcut" method="doExecution" />
+            <aop:pointcut expression="@within(org.springframework.stereotype.Service)" id="statisticsLogPointcut" />
+        </aop:aspect>
+    </aop:config>
+
+
+    <!-- [ページングサポートクラスのBean設定] -->
+    <!-- 利用時はコメントをはずしてください。
+    <bean id="defaultPagingSupport" class="jp.co.nssol.dukenavire.web.paging.DNPagingSupportImpl" scope="prototype">
+        <property name="displayPageRange" value="5" />
+        <property name="numberPerPage" value="5" />
+        <property name="positionRelativePage" value="3" />
+    </bean>
+    -->
+
+</beans>

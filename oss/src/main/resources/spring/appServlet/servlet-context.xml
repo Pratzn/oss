@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+	<description>Definition of servlet context</description>
+
+	<!-- Enabling Spring Web MVC annotations -->
+	<!-- Set the validator of input check annotation -->
+	<mvc:annotation-driven validator="validator" />
+
+	<!-- Settings of input check Annotation -->
+	<!-- Validator set of input check annotation (by default use the Hibernate
+		Validator) -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
+
+	<!-- Sort interceptor set of error messages -->
+	<mvc:interceptors>
+		<bean class="jp.co.nssol.dukenavire.web.errorsort.DNErrorSortInterceptor" />
+	</mvc:interceptors>
+
+	<!-- [Setting the Message Source -->
+	<!-- Definition of the message source (for the controller · JSP) -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<!-- Specifies the properties file (excluding the locale and extension) -->
+			<array>
+				<!-- For message -->
+				<value>/WEB-INF/messages/messages</value>
+				<!-- Default message of input check for annotation -->
+				<value>/WEB-INF/messages/ValidationMessages</value>
+				<!-- Field separate input check message for properties file that is generated
+					from the Form class generator -->
+				<value>/WEB-INF/messages/CustomValidationMessages</value>
+			</array>
+		</property>
+		<property name="cacheSeconds" value="60" />
+		<property name="fallbackToSystemLocale" value="false" />
+	</bean>
+
+	<!-- Accessor definition of the message source (for the controller) -->
+	<bean id="messageSourceAccessor"
+		class="org.springframework.context.support.MessageSourceAccessor">
+		<constructor-arg>
+			<ref bean="messageSource" />
+		</constructor-arg>
+	</bean>
+
+	<!-- [Controller-related XML definition file import] -->
+	<import resource="controllers.xml" />
+
+	<!-- [View (JSP) related XML definition file import] -->
+	<import resource="views.xml" />
+
+</beans>
