@@ -13,7 +13,7 @@
 
 	<context:annotation-config/>
 	<!-- Controller Settings -->
-	<context:component-scan base-package="th.co.nssol.ttfl.noss" />
+	<context:component-scan base-package="com.github.pratzn.oss" />
 
 
 	<!-- [Output setting of the exception log] -->

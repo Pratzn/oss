@@ -18,8 +18,8 @@
         <property name="defaultErrorView" value="redirect:/error/view?messageCode=ER9999" />
         <property name="exceptionMappings">
             <props>
-                <!-- DNApplicationException用のExceptionResolver設定 -->
-                <prop key="jp.co.nssol.dukenavire.common.exception.DNApplicationException">redirect:/error/view?messageCode=ER0002</prop>
+                <!-- ExceptionResolver setting for ApplicationException -->
+                <prop key="com.github.pratzn.oss.common.exception.ApplicationException">redirect:/error/view?messageCode=ER0002</prop>
             </props>
         </property>
     </bean>

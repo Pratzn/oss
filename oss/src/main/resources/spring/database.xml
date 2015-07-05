@@ -12,12 +12,12 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-    <!-- このXMLを利用する場合は、root-context.xmlのimportを有効にしてください。 -->
+    <!-- If you want to use this XML , please enable import of root-context.xml. -->
 
-    <description>アプリケーションコンテキスト - データアクセス関連のXML定義</description>
+    <description>Application context - data access -related XML definition</description>
 
 
-    <!-- [データソースの設定] -->
+    <!-- [Set of data source] -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driverClassName}" />
         <property name="url" value="${jdbc.url}" />
@@ -26,19 +26,19 @@
         <property name="defaultAutoCommit" value="false" />
     </bean>
 
-    <!-- [トランザクションマネージャの設定] -->
+    <!-- [Setting Transaction Manager] -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
 
-    <!-- [宣言的トランザクションの設定] -->
-    <!-- トランザクションのAOP設定 -->
+    <!-- [Set of declarative transaction] -->
+    <!-- AOP setting of transaction -->
     <aop:config>
         <aop:advisor pointcut="@within(org.springframework.stereotype.Service)"
                 advice-ref="transactionAdvice" />
     </aop:config>
 
-    <!-- トランザクションアドバイス -->
+    <!-- Transaction advice -->
     <tx:advice id="transactionAdvice">
         <tx:attributes>
             <tx:method name="create*" read-only="false" rollback-for="java.lang.Exception" />
@@ -49,20 +49,20 @@
     </tx:advice>
 
 
-    <!-- [アノテーションによるトランザクションの設定] -->
-    <!-- @Transactionalアノテーションで、トランザクションをかけたい場合は、アプリケーション
-         内で統一するため、宣言的トランザクションの設定を削除し、コメントをはずしてください。
+    <!-- [Setting transactions with annotations] -->
+    <!-- @TransactionalAnnotation , if you want to apply the transaction and application
+         Order to unify the inner , remove the set of declarative transaction , please remove the comment .
     <tx:annotation-driven />
     -->
 
 
-    <!-- [MyBatisの設定] -->
-    <!-- SpringとMyBatisの連携用Bean設定 -->
+    <!-- [MyBatis Setting] -->
+    <!-- Cooperation for Bean set of Spring and MyBatis-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="typeHandlers">
             <array>
-                <bean class="jp.co.nssol.dukenavire.mybatis.type.DNDateTimeTypeHandler"/>
+                <bean class="com.github.pratzn.oss.mybatis.type.DateTimeTypeHandler"/>
             </array>
         </property>
         <property name="configLocation" value="classpath:mybatis-mapper-config.xml" />
@@ -73,8 +73,8 @@
           Please import the is automatically generated).
     -->
 
-    <import resource="classpath:noss-dao-context.xml" />
-    <import resource="classpath:noss-logic-context.xml" />
+    <import resource="classpath:oss-dao-context.xml" />
+    <import resource="classpath:oss-logic-context.xml" />
 
 
 </beans>

@@ -21,10 +21,7 @@
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
 
-	<!-- Sort interceptor set of error messages -->
-	<mvc:interceptors>
-		<bean class="jp.co.nssol.dukenavire.web.errorsort.DNErrorSortInterceptor" />
-	</mvc:interceptors>
+
 
 	<!-- [Setting the Message Source -->
 	<!-- Definition of the message source (for the controller · JSP) -->

@@ -52,7 +52,7 @@
 		</constructor-arg>
 	</bean>
 
-	<!-- [データアクセス関係の設定ファイルインポート] -->
+	<!-- [Configuration file import of data access relations] -->
 	<import resource="database.xml" />
 
 	<!-- Configuration file import of service class relationship -->
