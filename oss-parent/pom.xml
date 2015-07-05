@@ -76,7 +76,7 @@
 			</activation>
 		</profile>
 	</profiles>
-	
+
 	<dependencyManagement>
 		<dependencies>
 			<!-- Spring Web MVC -->
@@ -138,6 +138,12 @@
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-taglibs</artifactId>
 				<version>${spring.security.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
 			</dependency>
 
 			<!-- AspectJ -->
@@ -306,7 +312,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
+
 	<dependencies>
 		<!-- Logging -->
 		<dependency>
@@ -381,7 +387,7 @@
 			</plugins>
 		</pluginManagement>
 		<plugins>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -397,27 +403,16 @@
 							<Built-By>pratz</Built-By>
 						</manifestEntries>
 					</archive>
-					<!-- 	<excludes>
-						<exclude>**/*.hta</exclude>
-						<exclude>**/generator-input-*.txt</exclude>
-						<exclude>**/dummy</exclude>
-						<exclude>dummy</exclude>
-					</excludes>-->
+					<!-- <excludes> <exclude>**/*.hta</exclude> <exclude>**/generator-input-*.txt</exclude> 
+						<exclude>**/dummy</exclude> <exclude>dummy</exclude> </excludes> -->
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>2.9</version>
-			<!-- 	<executions>
-					<execution>
-						<id>attach-javadoc</id>
-						<phase>package</phase>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>-->
+				<!-- <executions> <execution> <id>attach-javadoc</id> <phase>package</phase> 
+					<goals> <goal>jar</goal> </goals> </execution> </executions> -->
 				<configuration>
 					<docencoding>${encoding}</docencoding>
 					<charset>${encoding}</charset>
@@ -435,27 +430,16 @@
 							<Built-By>pratz</Built-By>
 						</manifestEntries>
 					</archive>
-					<!-- 	<excludes>
-						<exclude>**/*.hta</exclude>
-						<exclude>**/generator-input-*.txt</exclude>
-						<exclude>**/dummy</exclude>
-						<exclude>dummy</exclude>
-					</excludes>-->
+					<!-- <excludes> <exclude>**/*.hta</exclude> <exclude>**/generator-input-*.txt</exclude> 
+						<exclude>**/dummy</exclude> <exclude>dummy</exclude> </excludes> -->
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
 				<version>2.1.2</version>
-			<!-- 	<executions>
-					<execution>
-						<id>attach-sources</id>
-						<phase>package</phase>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>-->
+				<!-- <executions> <execution> <id>attach-sources</id> <phase>package</phase> 
+					<goals> <goal>jar</goal> </goals> </execution> </executions> -->
 				<configuration>
 					<archive>
 						<addMavenDescriptor>true</addMavenDescriptor>
@@ -466,13 +450,8 @@
 							<Built-By>pratz</Built-By>
 						</manifestEntries>
 					</archive>
-					<!-- 
-					<excludes>
-						<exclude>**/*.hta</exclude>
-						<exclude>**/generator-input-*.txt</exclude>
-						<exclude>**/dummy</exclude>
-						<exclude>dummy</exclude>
-					</excludes> -->
+					<!-- <excludes> <exclude>**/*.hta</exclude> <exclude>**/generator-input-*.txt</exclude> 
+						<exclude>**/dummy</exclude> <exclude>dummy</exclude> </excludes> -->
 				</configuration>
 			</plugin>
 			<plugin>
@@ -535,4 +514,10 @@
 			</plugin>
 		</plugins>
 	</build>
+	<modules>
+		<module>../oss-common</module>
+		<module>../oss</module>
+		<module>../oss-dao</module>
+		<module>../oss-logic</module>
+	</modules>
 </project>
