@@ -10,10 +10,10 @@
 			<property name="suppressAllComments" value="false" />
 		</commentGenerator>
 		<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver" connectionURL="jdbc:sqlserver://localhost:1433;databaseName=noss_db_03" userId="noss03" password="noss03" />
-		<javaModelGenerator targetPackage="mvc.session.dao.table.model" targetProject="D:/Users/prat/workspace/OneStopService/oss-dao/src/main/java" />
-		<sqlMapGenerator targetPackage="mvc.session.dao.table.mapper" targetProject="D:/Users/prat/workspace/OneStopService/oss-dao/src/main/resources">
+		<javaModelGenerator targetPackage="com.github.pratzn.oss.dao.table.model" targetProject="D:/Users/prat/workspace/OneStopService/oss-dao/src/main/java" />
+		<sqlMapGenerator targetPackage="com.github.pratzn.oss.dao.table.mapper" targetProject="D:/Users/prat/workspace/OneStopService/oss-dao/src/main/resources">
 		</sqlMapGenerator>
-		<javaClientGenerator targetPackage="mvc.session.dao.table.mapper" targetProject="D:/Users/prat/workspace/OneStopService/oss-dao/src/main/java" type="XMLMAPPER">
+		<javaClientGenerator targetPackage="com.github.pratzn.oss.dao.table.mapper" targetProject="D:/Users/prat/workspace/OneStopService/oss-dao/src/main/java" type="XMLMAPPER">
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 		<table schema="dbo" tableName="%">
