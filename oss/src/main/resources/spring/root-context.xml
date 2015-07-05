@@ -60,6 +60,6 @@
 
 	<!-- Configuration file import of Spring Security Relationship -->
 	<!-- Please be available at the time remove the comment -->
-	<import resource="security.xml" />
+	<!--<import resource="security.xml" />-->
 
 </beans>

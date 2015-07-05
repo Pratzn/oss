@@ -13,7 +13,7 @@
 
 
 
-    <!-- Spring security -->
+    <!-- Spring security 
     <filter>
 	        <filter-name>springSecurityFilterChain</filter-name>
 	        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -22,7 +22,7 @@
 	<filter-mapping>
 	        <filter-name>springSecurityFilterChain</filter-name>
 	        <url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping>-->
 
     <!-- エンコーディングフィルター -->
     <filter>
@@ -43,7 +43,7 @@
     </filter-mapping>
 
     <!-- リクエストロギングフィルター -->
-    <filter>
+    <!--<filter>
         <filter-name>requestLoggingFilter</filter-name>
         <filter-class>jp.co.nssol.dukenavire.web.filter.DNAccessLoggingFilter</filter-class>
         <init-param>
@@ -53,12 +53,12 @@
         <init-param>
             <param-name>beforeMessagePrefix</param-name>
             <param-value>Request [</param-value>
-        </init-param>
-        <!-- ログ出力を無視するURLのプレフィックス -->
+        </init-param>-->
+        <!-- ログ出力を無視するURLのプレフィックス 
         <init-param>
             <param-name>ignoreUrlPrefix</param-name>
             <param-value>/resources/</param-value>
-        </init-param>
+        </init-param>-->
         <!-- ログ出力を無視するパラメータ正規表現パターン。カンマ区切りで複数指定可能 -->
         <!--
         <init-param>
@@ -66,7 +66,7 @@
             <param-value>.*password.*</param-value>
         </init-param>
          -->
-         <!-- POST時のパラメータを出力するかどうか -->
+         <!-- POST時のパラメータを出力するかどうか 
          <init-param>
              <param-name>outputParameter</param-name>
              <param-value>false</param-value>
@@ -75,7 +75,7 @@
     <filter-mapping>
         <filter-name>requestLoggingFilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    </filter-mapping>-->
 
 
     <!-- Spring Securityフィルタ -->
