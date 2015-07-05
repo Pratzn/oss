@@ -51,9 +51,9 @@
 
     <!-- [Setting transactions with annotations] -->
     <!-- @TransactionalAnnotation , if you want to apply the transaction and application
-         Order to unify the inner , remove the set of declarative transaction , please remove the comment .
+         Order to unify the inner , remove the set of declarative transaction , please remove the comment .-->
     <tx:annotation-driven />
-    -->
+    
 
 
     <!-- [MyBatis Setting] -->
