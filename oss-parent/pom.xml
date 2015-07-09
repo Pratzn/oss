@@ -515,9 +515,10 @@
 		</plugins>
 	</build>
 	<modules>
-		<module>../oss-common</module>
+		
 		<module>../oss</module>
 		<module>../oss-dao</module>
 		<module>../oss-logic</module>
+		<module>../oss-common</module>
 	</modules>
 </project>
