@@ -1,4 +1,4 @@
-package com.github.pratzn.oss.controller;
+package com.github.pratzn.oss.common.controller;
 
 import org.springframework.stereotype.Controller;
 
