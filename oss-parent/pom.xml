@@ -53,7 +53,7 @@
 			<name>Spring Snapshot Repository</name>
 			<url>http://repo.spring.io/snapshot</url>
 		</repository>
-		<repository>
+	<!-- 	<repository>
 			<id>codehaus-snapshots</id>
 			<name>Codehaus Snapshots</name>
 			<url>http://nexus.codehaus.org/snapshots/</url>
@@ -63,7 +63,7 @@
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
-		</repository>
+		</repository> -->
 	</repositories>
 	<profiles>
 		<profile>
