@@ -10,7 +10,9 @@
 	<artifactId>oss</artifactId>
 	<packaging>war</packaging>
 	<name>oss</name>
-	<description>oss - Web Application Module</description>
+	<description>oss - Web Application Module
+
+oss short for one stop service</description>
 
 	<properties>
 		<build.number>${maven.build.timestamp}</build.number>
@@ -228,7 +230,11 @@
 					</webResources>
 				</configuration>
 			</plugin>
-
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.2.11.v20150529</version>
+			</plugin>
 		</plugins>
 		<resources>
 			<resource>
